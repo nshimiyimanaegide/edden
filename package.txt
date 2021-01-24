@@ -1,0 +1,137 @@
+Java Package
+...........
+A java package is a group of similar types of classes, interfaces 
+and sub-packages.
+Package in java can be categorized in two forms, built-in package and 
+user-defined package.
+Example of build in package:
+java, lang,awt, javax, swing, net, io, util, sql etc.
+
+Advantage of Java Package
+..........................
+1) Java package is used to categorize the classes and interfaces 
+so that they can be easily maintained.
+
+2) Java package provides access protection.
+
+3) Java package removes naming collision.
+
+#Example
+.......
+package mypackage;
+ public class packageExample{  
+ public static void main(String args[]){  
+    System.out.println("Example of package");  
+   }  
+} 
+
+Note: save as packageExample.java
+# How to compile and run a package?
+...................................
+1) javac -d directory javafilename
+ For our example: javac -d . packageExample.java
+2) to run
+ java packagename.filname
+for our example:
+java mypackage.packageExample
+
+Note : .(dot) allows to keep the package in the same directory
+       while -d a switch that tells the compile where to put the  class file 
+# How to access package from another package?
+.............................................
+1.import package.*;
+3.import package.classname;
+4.fully qualified name.
+
+1.using import package.*;
+........................
+If you use import package.* then all the classes and interfaces
+of this package will be accessible excluding subpackage
+
+Note: the import keyword make all classes and interfaces of another 
+class be accessible in the current class
+
+Example
+.......
+//step1 : create a pakage then save as packageExample1.java:
+  
+package package_1;
+public class packageExample1
+{ 
+ public void display()
+  {
+ System.out.println("Hello I am the first package");	
+ }}
+//step2 : create another package then save as PackageExample2.java
+// this package can import all classes ,method and fields of package2
+
+package package_2;
+import package_1.*;//import package_1
+public class PackageExample2
+{
+  public static void main(String []args)
+  {
+   // create object of class from the first package
+  packageExample1 x = new packageExample1();
+  x.display(); // access method of the first package
+  } }
+2) Using packagename.classname
+...............................
+Note: If you import package.classname then only declared 
+class of this package will be accessible.
+
+Example: Create package_1 to print the address of a person
+
+package package_1;
+public class packageExample1
+{
+  String state,city;  
+  public String address(String state,String city)
+	{
+		this.state=state;
+		this.city=city;
+		System.out.println("Your City is  "+city+" and state is "+state);
+		return "";
+	}
+public static void main(String []args)
+{
+	packageExample1 x = new packageExample1();
+	x.display();
+} }
+
+Create another package_2 to call parametirized method of package1
+.................................................................
+
+package package_3;
+// import package.classname example
+import package_1.packageExample1;
+public class  packageExample3
+{
+public static void main(String []args)
+{
+ packageExample1 obj = new packageExample1();
+ 
+ // call method from the first package and pass parameters
+ obj.address("Rwanda","Kigali");
+}	
+}
+
+3.use full qualification name
+..............................
+
+Note: if you use full qualification name only the class that is 
+defined is accessible.and there is non need to import.
+but you have to use full qualifiacation every time you are accessing
+class or interface.
+Example:create package4 save it as PackageExample4, that 
+        can access package1 
+package package_4;
+public class PackageExample4
+     {
+	public static void main(String []args)
+	{
+		// use full qualification name, no need to import
+	package_1.packageExample1 obj = new package_1.packageExample1();
+	obj.address("Rwanda","Gakenke");
+	}
+     }
